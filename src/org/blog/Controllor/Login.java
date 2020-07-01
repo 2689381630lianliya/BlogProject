@@ -31,18 +31,15 @@ import java.util.concurrent.Executors;
 @Controller
 @RequestMapping("Controller")
 //登陆界面
-public class MyController  {
+public class Login {
        @Resource
        blogserviceImpl  service = null;
        @Resource
        ServletLife life = null;
 
-   // private ExecutorService executor = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-        int id =0;
+
     @RequestMapping("loginuser")
     public String login(HttpServletRequest request, HttpServletResponse response,Map map) throws IOException {
-        //创建线程池，连接池中有多个线程，每一个线程都可以处理一次连接
-
         String username = request.getParameter("username");
         //session
         HttpSession session = request.getSession();
@@ -55,7 +52,7 @@ public class MyController  {
         //获取用户信息
         map.put("user",u);
         user user = service.querybyname(username);
-        id=user.getId();
+
         //查询登录状态
         login login = service.querylogin(user.getId());
 //        FileOperateUtil.
@@ -92,7 +89,6 @@ public class MyController  {
         //获取cookies
         Cookie[] cookies = request.getCookies();
 
-
         //获取前十文章数据
         List<article> articles = service.queryqianshi();
 
@@ -104,7 +100,6 @@ public class MyController  {
             //将标题放入index页面
             session.setAttribute("link",newlist);
 
-//
             map.put("link",newlist);
                 for (Cookie cookie : cookies) {
                     if (!cookie.getValue().equals(username)) {
