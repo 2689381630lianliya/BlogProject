@@ -50,7 +50,6 @@ public class Login {
 
         user u = new user(username,password);
         //获取用户信息
-        map.put("user",u);
         user user = service.querybyname(username);
 
         //查询登录状态
