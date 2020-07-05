@@ -67,7 +67,6 @@ public class Login {
             ServletContext context = request.getServletContext();
             Integer Logincount = (Integer)context.getAttribute("Logincount");
              if (Logincount==null) Logincount=0;
-            System.out.println(Logincount);
             //在线人数+1
             //创建一个标识确保当前用户刷新页面不会重复添加
             boolean flag2 =true;
